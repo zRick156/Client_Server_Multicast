@@ -8,8 +8,8 @@ public class Server {
     public static final int PORT=3191;
 
     private static int nclient = 0;
-    DataOutputStream out;
-    DataInputStream in;
+    private DataOutputStream out;
+    private DataInputStream in;
 
     private ServerSocket server=null;
     private Socket client=null;
