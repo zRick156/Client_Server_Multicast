@@ -40,7 +40,6 @@ public class Client {
                 chrRisposta = (char) tastiera.readLine().toUpperCase().charAt(0);
             } while (chrRisposta != 'S' && !chrRisposta.equals('N'));
         } while (true);
-
     }
 
 
