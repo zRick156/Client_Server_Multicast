@@ -5,10 +5,10 @@ import java.net.UnknownHostException;
 
 
 public class Client {
-    int porta = 3191;
-    DataInputStream in;
-    DataOutputStream out;
-    BufferedReader tastiera;
+    private int porta = 3191;
+    private DataInputStream in;
+    private DataOutputStream out;
+    private BufferedReader tastiera;
 
 
     public void comunica() throws IOException {
