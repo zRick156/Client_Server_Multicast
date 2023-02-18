@@ -2,11 +2,9 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
+
 
 public class Client {
-    Socket socket=null;
-
     int porta = 3191;
     DataInputStream in;
     DataOutputStream out;
@@ -14,7 +12,7 @@ public class Client {
 
 
     public void comunica() throws IOException {
-        String messaggio = "";
+        String messaggio;
         Character    chrRisposta;
 
         chrRisposta = 'S';
@@ -37,14 +35,14 @@ public class Client {
                 }
             do {
                 System.out.println("[2.1] - Continuare la connessione? S/N");
-                chrRisposta = (char) tastiera.readLine().toUpperCase().charAt(0);
+                chrRisposta = tastiera.readLine().toUpperCase().charAt(0);
             } while (chrRisposta != 'S' && !chrRisposta.equals('N'));
         } while (true);
     }
 
 
 
-    public Socket connetti(){
+    public void connetti(){
         try {
             System.out.println("[0] - provo a connettermi con il server ");
             Socket socket = new Socket(InetAddress.getLocalHost(), porta);
@@ -60,7 +58,6 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return socket;
     }
 
 
