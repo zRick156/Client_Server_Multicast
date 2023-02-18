@@ -21,7 +21,7 @@ public class Client {
         tastiera = new BufferedReader(new InputStreamReader(System.in));
         do
         {
-                if(chrRisposta.toString().equalsIgnoreCase("S"))
+                if (chrRisposta.toString().equalsIgnoreCase("S"))
                 {
                     System.out.println("[2.2] - Messaggio da inviare al server: ");
                     messaggio = tastiera.readLine();

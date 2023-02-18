@@ -24,7 +24,7 @@ public class Server {
     }
 
     public Server() throws IOException, ClassNotFoundException {
-        pool=Executors.newFixedThreadPool(4);
+        pool=Executors.newFixedThreadPool(22);
 
     }
 
