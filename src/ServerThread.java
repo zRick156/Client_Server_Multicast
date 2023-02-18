@@ -7,13 +7,12 @@ import java.net.Socket;
 import java.util.Objects;
 
 public class ServerThread implements Runnable{
-    Server  server = null;
-    Socket socketClient;
+    private Server  server = null;
+    private Socket socketClient;
     private int id;
-    int porta = 6789; //porta server
 
-    DataInputStream in;
-    DataOutputStream out;
+    private DataInputStream in;
+    private DataOutputStream out;
 
     public ServerThread(Socket socketClient, int contatore, Server server) throws IOException
     {
