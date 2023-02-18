@@ -5,10 +5,8 @@ import java.net.UnknownHostException;
 
 
 public class Client {
-    private int porta = 3191;
     private DataInputStream in;
     private DataOutputStream out;
-    private BufferedReader tastiera;
 
 
     public void comunica() throws IOException {
@@ -16,7 +14,7 @@ public class Client {
         Character    chrRisposta;
 
         chrRisposta = 'S';
-        tastiera = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader tastiera = new BufferedReader(new InputStreamReader(System.in));
         do
         {
                 if (chrRisposta.toString().equalsIgnoreCase("S"))
@@ -45,6 +43,7 @@ public class Client {
     public void connetti(){
         try {
             System.out.println("[0] - provo a connettermi con il server ");
+            int porta = 3191;
             Socket socket = new Socket(InetAddress.getLocalHost(), porta);
 
             System.out.println("[1] - Connessione effettuta");

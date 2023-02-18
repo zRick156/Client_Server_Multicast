@@ -1,23 +1,18 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Objects;
 
 public class ServerThread implements Runnable{
-    private Server  server = null;
-    private Socket socketClient;
-    private int id;
+    private final Socket socketClient;
+    private final int id;
+    private final DataInputStream in;
+    private final DataOutputStream out;
 
-    private DataInputStream in;
-    private DataOutputStream out;
-
-    public ServerThread(Socket socketClient, int contatore, Server server) throws IOException
+    public ServerThread(Socket socketClient, int contatore) throws IOException
     {
         this.socketClient = socketClient;
-        this.server = server;
         this.id = contatore;
         System.out.println("[Server] connessione " + id + " stabilita con il client");
         out = new DataOutputStream(this.socketClient.getOutputStream());
@@ -34,28 +29,29 @@ public class ServerThread implements Runnable{
             try {
                 System.out.println("[" + id + "][3] - Aspetto un messaggio dal client...");
                 if(socketClient.isConnected())
-                letto = in.readLine();
+                    letto = in.readLine();
                 System.out.println("["+ id + "][4] - messaggio ricevuto : " + letto);
-                String risposta="";
+                String risposta;
+                assert letto != null;
                 if(!letto.equalsIgnoreCase("fine")) {
                     char a;
+                    StringBuilder rispostaBuilder = new StringBuilder();
                     for (int i = 0; i < letto.length(); ++i) {
                         a = letto.charAt(i);
-                        risposta = a + risposta;
+                        rispostaBuilder.insert(0, a);
                     }
+                    risposta = rispostaBuilder.toString();
                     risposta = risposta.toUpperCase();
-                    System.out.println("[" + id + "][5] - rispondo con: " + risposta);
-                    out.writeBytes(risposta + "\n");
                 }else{
                     risposta = letto.toUpperCase();
-                    System.out.println("[" + id + "][5] - rispondo con: " + risposta);
-                    out.writeBytes(risposta + "\n");
                 }
+                System.out.println("[" + id + "][5] - rispondo con: " + risposta);
+                out.writeBytes(risposta + "\n");
 
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }while (!letto.equalsIgnoreCase("fine"));
+        }while (!Objects.requireNonNull(letto).equalsIgnoreCase("fine"));
     }
 }

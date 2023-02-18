@@ -8,35 +8,35 @@ public class Server {
     public static final int PORT=3191;
 
     private static int nclient = 0;
-    private DataOutputStream out;
-    private DataInputStream in;
 
-    private ServerSocket server=null;
-    private Socket client=null;
     private static ExecutorService pool=null;
 
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException {
         new Server();
         Server serverObj=new Server();
         serverObj.startServer();
 
     }
 
-    public Server() throws IOException, ClassNotFoundException {
+    public Server() {
         pool=Executors.newFixedThreadPool(22);
 
     }
 
     public void startServer() throws IOException{
-        server = new ServerSocket(PORT);
+        ServerSocket server = new ServerSocket(PORT);
         System.out.println("[Server] Attivo");
         System.out.println("[Server] Attesa connessione");
-        while (true){
-            client=server.accept();
-            nclient++;
-            ServerThread runnable=new ServerThread(client, nclient ,this);
-            pool.execute(runnable);
-        }
+        do {
+            try {
+                Socket client = server.accept();
+                nclient++;
+                ServerThread runnable = new ServerThread(client, nclient);
+                pool.execute(runnable);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } while (true);
     }
 }
