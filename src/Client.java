@@ -2,6 +2,7 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class Client {
     Socket socket=null;
@@ -14,17 +15,31 @@ public class Client {
 
     public void comunica() throws IOException {
         String messaggio = "";
-        tastiera = new BufferedReader(new InputStreamReader(System.in));
-        do {
-            System.out.println("[2] - Messaggio da inviare al server: ");
+        Character    chrRisposta;
 
-            messaggio = tastiera.readLine();
-            System.out.println("[3] - invio: " + messaggio);
-            out.writeBytes(messaggio + "\n");
-            System.out.println("[4] - in attesa di una risposta");
-            String ricevuta = in.readLine();
-            System.out.println("[5] - risposta del server: " + ricevuta);
-        } while (!messaggio.equalsIgnoreCase("fine"));
+        chrRisposta = 'S';
+        tastiera = new BufferedReader(new InputStreamReader(System.in));
+        do
+        {
+                if(chrRisposta.toString().equalsIgnoreCase("S"))
+                {
+                    System.out.println("[2.2] - Messaggio da inviare al server: ");
+                    messaggio = tastiera.readLine();
+                    System.out.println("[3] - invio: " + messaggio);
+                    out.writeBytes(messaggio + "\n");
+                    System.out.println("[4] - in attesa di una risposta");
+                    String ricevuta = in.readLine();
+                    System.out.println("[5] - risposta del server: " + ricevuta);
+                } else {
+                    messaggio = "fine";
+                    out.writeBytes(messaggio + "\n");
+                    break;
+                }
+            do {
+                System.out.println("[2.1] - Continuare la connessione? S/N");
+                chrRisposta = (char) tastiera.readLine().toUpperCase().charAt(0);
+            } while (chrRisposta != 'S' && !chrRisposta.equals('N'));
+        } while (true);
 
     }
 
