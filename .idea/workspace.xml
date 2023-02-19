@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="21363b2d-5abb-4779-ab5d-0161e55aec27" name="Changes" comment="last push">
       <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,6 +87,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Client_ServerMultiCast" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Client_ServerMultiCast" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Client" />
@@ -110,6 +122,7 @@
       <workItem from="1676753886737" duration="2534000" />
       <workItem from="1676772064575" duration="112000" />
       <workItem from="1676772183323" duration="22000" />
+      <workItem from="1676772267853" duration="145000" />
     </task>
     <task id="LOCAL-00001" summary="yes">
       <created>1676749183570</created>
